@@ -36,6 +36,15 @@ public class Vector {
         this.data = new double[N];
     } // Vector( int )
 
+    
+    public void xBouncing() {
+        data[0] = data[0]*-0.7;
+    }
+    
+    public void yBouncing() {
+        data[1] = data[1]*-0.7;
+    }
+    
     // create a vector from an array
     public Vector(double[] data) {
         N = data.length;

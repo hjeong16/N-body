@@ -2,6 +2,7 @@ package nbody;
 
 import edu.princeton.cs.In;
 import edu.princeton.cs.StdDraw;
+import javax.swing.JPanel;
 
 /**
  * ****************************************************************************
@@ -25,6 +26,7 @@ public class Universe {
     private final double radius;     // radius of universe
     private final int N;             // number of bodies
     private final Body[] orbs;       // array of N bodies
+  
     
     // read universe from file
     public Universe(String fileName) {
@@ -40,6 +42,8 @@ public class Universe {
         radius = inputStream.readDouble();
         StdDraw.setXscale(-radius, +radius);
         StdDraw.setYscale(-radius, +radius);
+        
+    
 
         // read in the N bodies
         orbs = new Body[N];
@@ -58,6 +62,8 @@ public class Universe {
         } // for
     } // Universe()
 
+  
+    
     // increment time by dt units, assume forces are constant in given interval
     public void increaseTime(double dt) {
 
@@ -79,11 +85,15 @@ public class Universe {
         // move the bodies
         for (int i = 0; i < N; i++) {
             orbs[i].move(f[i], dt);
+            orbs[i].Bouncing(radius);
+            
+            
         } // for
     } // increaseTime( double )
 
     // draw the N bodies
     public void draw() {
+        
         StdDraw.clear(StdDraw.LIGHT_GRAY);
         for (int i = 0; i < N; i++) {
             orbs[i].draw();
@@ -99,6 +109,11 @@ public class Universe {
           newton.increaseTime(dt);
             newton.draw();
           StdDraw.show(1);
+          
+        
+                  
+              }
+          }
 //            
 //             int N = Integer.parseInt(args[0]);
 //        for (int i = 0; i < N; i++)
@@ -109,5 +124,5 @@ public class Universe {
 //        }
                  
         } // while
-    } // main( String [] )
-} // Universe
+ // main( String [] )
+ // Universe
