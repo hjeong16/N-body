@@ -25,10 +25,10 @@ public class Body {
     
     /**
      *
-     * @param r
-     * @param v
-     * @param mass
-     * @param image
+     * @param r position
+     * @param v velocity
+     * @param mass mass
+     * @param image image
      */
     public Body(Vector r, Vector v, double mass, String image) {
         this.r = r;
@@ -38,9 +38,9 @@ public class Body {
     } // Body( Vector, Vector, double, String )
 
     /**
-     *
-     * @param f
-     * @param dt
+     * adding a trace function by using ArrayList
+     * @param f vector
+     * @param dt increment time by dt units
      */
     public void move(Vector f, double dt) {
         Vector a = f.times(1 / mass);
@@ -60,7 +60,7 @@ public class Body {
     /**
      *
      * @param b
-     * @return
+     * 
      */
     public Vector forceFrom(Body b) {
         Body a = this;
@@ -71,11 +71,10 @@ public class Body {
         return delta.direction().times(F);
     } // forceFrom( Body )
     
-    //Set a boundary to boucing the planets back
-
+  
     /**
-     *
-     * @param boundary
+     * setting a boundary to bounce the objects back
+     * @param boundary edges
      */
       public void Bouncing (double boundary) {
         double x = r.cartesian(0);
@@ -97,7 +96,11 @@ public class Body {
     } //Bouncing (double)
     
     
-    // draw a trail
+    /**
+     * drawing a trail
+     * setting pictures instead of dots
+     * setting a random color for dots
+     */
     public void draw() {
         
         for (int i = 0; i < trace.size() - 1; i++) {

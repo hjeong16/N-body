@@ -26,15 +26,17 @@ package nbody;
  ******************************************************************************/
 
 public class Vector { 
-
+    
     private final int N;         // length of the vector
+    
     private final double[] data;       // array of vector's components
 
     // create the zero vector of length N
 
     /**
-     *
-     * @param N
+     * create the zero vector of length N
+     * @param N length of the vector
+     * 
      */
     public Vector(int N) {
         this.N = N;
@@ -42,14 +44,14 @@ public class Vector {
     } // Vector( int )
 
     /**
-     *
+     *setting a bouncing function for x
      */
     public void xBouncing() {
         data[0] = data[0]*-0.5;
     } //xBouncing()
     
     /**
-     *
+     *setting a bouncing function for y
      */
     public void yBouncing() {
         data[1] = data[1]*-0.5;
@@ -58,8 +60,8 @@ public class Vector {
     // create a vector from an array
 
     /**
-     *
-     * @param data
+     * create a vector from an array
+     * @param data array of vector's components
      */
     public Vector(double[] data) {
         N = data.length;
@@ -90,7 +92,7 @@ public class Vector {
 
     /**
      *
-     * @return
+     * @return the length of the vector
      */
     public int length() {
         return N;
@@ -101,7 +103,7 @@ public class Vector {
     /**
      *
      * @param that
-     * @return
+     * @return the inner product of this Vector a and b
      */
     public double dot(Vector that) {
         if (this.N != that.N) {
@@ -117,8 +119,8 @@ public class Vector {
     // return the Euclidean norm of this Vector
 
     /**
-     *
-     * @return
+     * 
+     * @return the Euclidean norm of this Vector
      */
     public double magnitude() {
         return Math.sqrt(this.dot(this));
@@ -129,7 +131,7 @@ public class Vector {
     /**
      *
      * @param that
-     * @return
+     * @return the Euclidean distance between this and that
      */
     public double distanceTo(Vector that) {
         if (this.N != that.N) {
@@ -142,9 +144,9 @@ public class Vector {
     // return this + that
 
     /**
-     *
+     * 
      * @param that
-     * @return
+     * @return this + that
      */
     public Vector plus(Vector that) {
         if (this.N != that.N) {
@@ -162,7 +164,7 @@ public class Vector {
     /**
      *
      * @param that
-     * @return
+     * @return this - that
      */
     public Vector minus(Vector that) {
         if (this.N != that.N) {
@@ -180,7 +182,7 @@ public class Vector {
     /**
      *
      * @param i
-     * @return
+     * @return the corresponding coordinate
      */
     public double cartesian(int i) {
         return data[i];
@@ -191,7 +193,7 @@ public class Vector {
     /**
      *
      * @param factor
-     * @return
+     * @return a new object whose value is (this * factor)
      */
     public Vector times(double factor) {
         Vector c = new Vector(N);
@@ -205,7 +207,7 @@ public class Vector {
 
     /**
      *
-     * @return
+     * @return the corresponding unit vector
      */
     public Vector direction() {
         if (this.magnitude() == 0.0) {
@@ -216,6 +218,10 @@ public class Vector {
     } // direction()
 
     // return a string representation of the vector
+     /**
+     *
+     * @return a string representation of the vector
+     */
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
@@ -232,7 +238,7 @@ public class Vector {
     // test client
 
     /**
-     *
+     * test client
      * @param args
      */
     public static void main(String[] args) {

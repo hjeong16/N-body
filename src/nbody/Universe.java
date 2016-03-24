@@ -3,7 +3,14 @@ package nbody;
 
 import edu.princeton.cs.In;
 import edu.princeton.cs.StdDraw;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * ****************************************************************************
@@ -22,39 +29,23 @@ import javax.swing.JFrame;
  *
  *****************************************************************************
  */
-public class Universe extends JFrame  {
-
+public class Universe extends JComponent  {
+    
     private final double radius;     // radius of universe
     private final int N;             // number of bodies
     private final Body[] orbs;       // array of N bodies
- 
+   
     
-//    private Universe() {
-//        setTitle("Background Color for JFrame");
-//	setSize(400,400);
-//	setLocationRelativeTo(null);
-//	setDefaultCloseOperation(EXIT_ON_CLOSE);
-//	setVisible(true);
-//        setLayout(new BorderLayout());
-//	JLabel background=new JLabel(new ImageIcon("C:\\Users\\Computer\\Downloads\\colorful design.png"));
-//	add(background);
-//	background.setLayout(new FlowLayout());
-//	l1=new JLabel("Here is a button");
-//	b1=new JButton("I am a button");
-//	background.add(l1);
-//	background.add(b1);
-//    }
-
     
     
     // read universe from file
 
     /**
-     *
-     * @param fileName
+     * read universe from file
+     * @param fileName filename
      */
     public Universe(String fileName) {
-        
+      
         // the authors' version reads from standard input
         // our version reads from a file
         In inputStream = new In(fileName);
@@ -89,8 +80,8 @@ public class Universe extends JFrame  {
     // increment time by dt units, assume forces are constant in given interval
 
     /**
-     *
-     * @param dt
+     * increment time by dt units, assume forces are constant in given interval
+     * @param dt units
      */
     public void increaseTime(double dt) {
 
@@ -117,8 +108,9 @@ public class Universe extends JFrame  {
         } // for
     } // increaseTime( double )
 
-   
-    // draw the N bodies
+   /**
+     * draw the N bodies
+     */
     public void draw() {
       
       
@@ -135,17 +127,18 @@ public class Universe extends JFrame  {
     // client to simulate a universe
 
     /**
-     *
-     * @param args
+     * client to simulate a universe
+     * @param args 4body.txt
      */
     public static void main(String[] args) {
-        
+
+
         
         Universe newton = new Universe(args[1]);
         double dt = Double.parseDouble(args[0]);
         
         while(true) {
-//            StdDraw.clear();
+            StdDraw.clear();
             
             newton.increaseTime(dt);
             newton.draw();
@@ -153,10 +146,17 @@ public class Universe extends JFrame  {
 
         }// while
         
-       
+//       
+//        JFrame f = new JFrame();
+//    	try {
+//    		f.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("sky.png")))));
+//    	} catch (IOException e) {
+//    		e.printStackTrace();
+//    	}
+//    	f.pack();
+//    	f.setVisible(true);
+//   
 
-        /* Create and display the form */
-       
     }
   
     }// main( String [] )
