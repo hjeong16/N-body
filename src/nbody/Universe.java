@@ -1,8 +1,9 @@
 package nbody;
 
+
 import edu.princeton.cs.In;
 import edu.princeton.cs.StdDraw;
-import javax.swing.JPanel;
+import javax.swing.JFrame;
 
 /**
  * ****************************************************************************
@@ -16,21 +17,44 @@ import javax.swing.JPanel;
  * This data-driven program simulates motion in the universe defined by the
  * standard input stream, increasing time at the rate on the command line.
  *
- * % java Universe 25000 4body.txt
+ * % java Universe 15000 4body.txt
  *
  *
  *****************************************************************************
  */
-public class Universe {
+public class Universe extends JFrame  {
 
     private final double radius;     // radius of universe
     private final int N;             // number of bodies
     private final Body[] orbs;       // array of N bodies
-  
+ 
+    
+//    private Universe() {
+//        setTitle("Background Color for JFrame");
+//	setSize(400,400);
+//	setLocationRelativeTo(null);
+//	setDefaultCloseOperation(EXIT_ON_CLOSE);
+//	setVisible(true);
+//        setLayout(new BorderLayout());
+//	JLabel background=new JLabel(new ImageIcon("C:\\Users\\Computer\\Downloads\\colorful design.png"));
+//	add(background);
+//	background.setLayout(new FlowLayout());
+//	l1=new JLabel("Here is a button");
+//	b1=new JButton("I am a button");
+//	background.add(l1);
+//	background.add(b1);
+//    }
+
+    
     
     // read universe from file
-    public Universe(String fileName) {
 
+    /**
+     *
+     * @param fileName
+     */
+    public Universe(String fileName) {
+        
         // the authors' version reads from standard input
         // our version reads from a file
         In inputStream = new In(fileName);
@@ -42,8 +66,6 @@ public class Universe {
         radius = inputStream.readDouble();
         StdDraw.setXscale(-radius, +radius);
         StdDraw.setYscale(-radius, +radius);
-        
-    
 
         // read in the N bodies
         orbs = new Body[N];
@@ -60,11 +82,16 @@ public class Universe {
             Vector v = new Vector(velocity);
             orbs[i] = new Body(r, v, mass, image);
         } // for
-    } // Universe()
+        
+     
+    } // Universe( String )
 
-  
-    
     // increment time by dt units, assume forces are constant in given interval
+
+    /**
+     *
+     * @param dt
+     */
     public void increaseTime(double dt) {
 
         // initialize the forces to zero
@@ -86,43 +113,52 @@ public class Universe {
         for (int i = 0; i < N; i++) {
             orbs[i].move(f[i], dt);
             orbs[i].Bouncing(radius);
-            
-            
+
         } // for
     } // increaseTime( double )
 
+   
     // draw the N bodies
     public void draw() {
-        
+      
+      
         StdDraw.clear(StdDraw.LIGHT_GRAY);
         for (int i = 0; i < N; i++) {
             orbs[i].draw();
         } // for
-    } // draw()
-
-    // client to simulate a universe
-    public static void main(String[] args) {
-        Universe newton = new Universe( args[1] );
-        double dt = Double.parseDouble(args[0]);
-        while (true) {
-            StdDraw.clear();
-          newton.increaseTime(dt);
-            newton.draw();
-          StdDraw.show(1);
-          
         
-                  
-              }
-          }
-//            
-//             int N = Integer.parseInt(args[0]);
-//        for (int i = 0; i < N; i++)
-//        {
-//            double x = StdRandom.gaussian(.5, .2);
-//            double y = StdRandom.gaussian(.5, .2);
-//            StdDraw.point(x,y);
-//        }
-                 
-        } // while
- // main( String [] )
- // Universe
+       
+    } // draw()
+    
+  
+    
+    // client to simulate a universe
+
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        
+        
+        Universe newton = new Universe(args[1]);
+        double dt = Double.parseDouble(args[0]);
+        
+        while(true) {
+//            StdDraw.clear();
+            
+            newton.increaseTime(dt);
+            newton.draw();
+            StdDraw.show(10);
+
+        }// while
+        
+       
+
+        /* Create and display the form */
+       
+    }
+  
+    }// main( String [] )
+
+  

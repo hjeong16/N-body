@@ -21,16 +21,27 @@ public class Body {
     private final double mass;   // mass
     private final String image;
     private final ArrayList<ArrayList> trace = new ArrayList<ArrayList>(); // arraylist
-    private final int tracelength = 100;
+    private final int tracelength = 30;
     
-    
+    /**
+     *
+     * @param r
+     * @param v
+     * @param mass
+     * @param image
+     */
     public Body(Vector r, Vector v, double mass, String image) {
         this.r = r;
         this.v = v;
         this.mass = mass;
         this.image = image;
-    } // Body( Vector, Vector, double )
+    } // Body( Vector, Vector, double, String )
 
+    /**
+     *
+     * @param f
+     * @param dt
+     */
     public void move(Vector f, double dt) {
         Vector a = f.times(1 / mass);
         v = v.plus(a.times(dt));
@@ -41,9 +52,16 @@ public class Body {
         trace.add(tracing);
         if (trace.size() > tracelength) {
             trace.remove(0);
-        }
+        }  // add a trace function
+        
+        
     } // move( Vector, double )
 
+    /**
+     *
+     * @param b
+     * @return
+     */
     public Vector forceFrom(Body b) {
         Body a = this;
         double G = 6.67e-11;
@@ -52,38 +70,34 @@ public class Body {
         double F = (G * a.mass * b.mass) / (dist * dist);
         return delta.direction().times(F);
     } // forceFrom( Body )
-
-//    public static void main(String[] args) {
-//        int N = Integer.parseInt(args[0]);
-//        for (int i = 0; i < N; i++)
-//        {
-//            double x = StdRandom.gaussian(.5, .2);
-//            double y = StdRandom.gaussian(.5, .2);
-//            StdDraw.point(x,y);
-//        }
-//    }
     
+    //Set a boundary to boucing the planets back
+
+    /**
+     *
+     * @param boundary
+     */
       public void Bouncing (double boundary) {
         double x = r.cartesian(0);
         double y = r.cartesian(1);
        
-        if(x >= boundary) {
+        if(x >= boundary  && v.cartesian(0) > 0) {
             v.xBouncing();   
         }
-        if(x <= -boundary) {
+        if(x <= -boundary  && v.cartesian(0) < 0) {
             v.xBouncing();
         }
-        if(y >= boundary) {
+        if(y >= boundary  && v.cartesian(1) > 0) {
             v.yBouncing();
         }
-        if(y <= -boundary) {
+        if(y <= -boundary  && v.cartesian(1) < 0) {
             v.yBouncing();
         }
         
-    }
+    } //Bouncing (double)
     
     
-    
+    // draw a trail
     public void draw() {
         
         for (int i = 0; i < trace.size() - 1; i++) {
@@ -92,18 +106,12 @@ public class Body {
             double b = (double) trace.get(i).get(1);
             double c = (double) trace.get((i+1)).get(0);
             double d = (double) trace.get((i+1)).get(1);
-            StdDraw.setPenRadius(0.015);
+            StdDraw.setPenRadius(Math.random()*0.02);
             StdDraw.line(a, b, c, d);
-        }
+        } //draw()
 
-        
-//        
-//          StdDraw.point(r.cartesian(0), r.cartesian(0));
-        StdDraw.point(r.cartesian(0), r.cartesian(1));
-//        StdDraw.point(r.cartesian(1), r.cartesian(0));
-//        StdDraw.point(r.cartesian(1), r.cartesian(1));
-
-        StdDraw.picture(r.cartesian(0), r.cartesian(1), image, .03 * 10e10, .03 * 10e10);
+       
+        StdDraw.picture(r.cartesian(0), r.cartesian(1), image, .07 * 10e10, .07 * 10e10);
 
         StdDraw.setPenColor(Color.getHSBColor((float) Math.random(), .8f, .8f));
 
