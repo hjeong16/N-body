@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * Implementation of a 2D Body with a position, velocity and mass.
  *
- *
+ *@see <a href="https://en.wikipedia.org/wiki/N-body_simulation">https://en.wikipedia.org/wiki/N-body_simulation </a>
  *****************************************************************************
  */
 public class Body {

@@ -3,6 +3,7 @@ package nbody;
 
 import edu.princeton.cs.In;
 import edu.princeton.cs.StdDraw;
+import static edu.princeton.cs.StdDraw.setCanvasSize;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class Universe extends JComponent  {
      * @param fileName filename
      */
     public Universe(String fileName) {
-      
+        setCanvasSize(800,700);
         // the authors' version reads from standard input
         // our version reads from a file
         In inputStream = new In(fileName);
@@ -113,9 +114,10 @@ public class Universe extends JComponent  {
      */
     public void draw() {
       
-      
-        StdDraw.clear(StdDraw.LIGHT_GRAY);
+        
+        //StdDraw.clear(StdDraw.LIGHT_GRAY);
          StdDraw.picture(0, 0, "sky.png",this.radius*2.5,this.radius*2.5);
+         
         for (int i = 0; i < N; i++) {
             orbs[i].draw();
         } // for
