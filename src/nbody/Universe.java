@@ -115,6 +115,7 @@ public class Universe extends JComponent  {
       
       
         StdDraw.clear(StdDraw.LIGHT_GRAY);
+         StdDraw.picture(0, 0, "sky.png",this.radius*2.5,this.radius*2.5);
         for (int i = 0; i < N; i++) {
             orbs[i].draw();
         } // for
@@ -131,22 +132,7 @@ public class Universe extends JComponent  {
      * @param args 4body.txt
      */
     public static void main(String[] args) {
-
-
-        
-        Universe newton = new Universe(args[1]);
-        double dt = Double.parseDouble(args[0]);
-        
-        while(true) {
-            StdDraw.clear();
-            
-            newton.increaseTime(dt);
-            newton.draw();
-            StdDraw.show(10);
-
-        }// while
-        
-//       
+       
 //        JFrame f = new JFrame();
 //    	try {
 //    		f.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("sky.png")))));
@@ -155,7 +141,21 @@ public class Universe extends JComponent  {
 //    	}
 //    	f.pack();
 //    	f.setVisible(true);
-//   
+   
+
+        
+        Universe newton = new Universe(args[1]);
+        double dt = Double.parseDouble(args[0]);
+        
+        while(true) {
+            StdDraw.clear();
+            newton.increaseTime(dt);
+            newton.draw();
+            StdDraw.show(10);
+
+        }// while
+        
+//
 
     }
   
