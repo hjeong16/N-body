@@ -25,4 +25,7 @@ I added Math.Random to make the width of trail keep changing and getHSBColor to 
 I added bouncing function that if the objects hit the edges it bounces back. <br> if(x >= boundary  && v.cartesian(0) > 0) {
             v.xBouncing(); <br>
 -Background <br>
-i added the background picture by using stdDraw.picture 
+i added the background picture by using stdDraw.picture <br>
+-JunitTest<br>
+I tested if the methods are working or not
+
