@@ -114,7 +114,7 @@ public class Body {
         } //draw()
 
        
-        StdDraw.picture(r.cartesian(0), r.cartesian(1), image, .07 * 10e10, .07 * 10e10);
+        StdDraw.picture(r.cartesian(0), r.cartesian(1), image, .09 * 10e10, .09 * 10e10);
 
         StdDraw.setPenColor(Color.getHSBColor((float) Math.random(), .8f, .8f));
 
