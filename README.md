@@ -28,6 +28,6 @@ I added bouncing function that if the objects hit the edges it bounces back. <br
 i added the background picture by using stdDraw.picture <br>
 -JunitTest<br>
 I tested if the methods are working or not<br>
--Javadoc
+-Javadoc<br>
 I created Javadoc file and explained each methods within
 
